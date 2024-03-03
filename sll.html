@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINGLE LINKED LIST</title>
+</head>
+
+<body>
+    <p>
+        #include &lt;stdio.h&gt;<br>
+        #include &lt;stdlib.h&gt;<br>
+        #include &lt;string.h&gt;<br>
+        struct node<br>
+        {<br>
+        int usn, sem, phno;<br>
+        char name[20];<br>
+        char branch[20];<br>
+        struct node *link;<br>
+        } *start;<br>
+        void create(int, int, int, char[], char[]);<br>
+        void disp();<br>
+        void insertfront(int, int, int, char[], char[]);<br>
+        void deletefront();<br>
+        void insertend(int, int, int, char[], char[]);<br>
+        void deleteend();<br>
+        main()<br>
+        {<br>
+        int ch, n, i, m, a, pos;<br>
+        int usn, sem, phno;<br>
+        char name[20], branch[20];<br>
+        start = NULL;<br>
+        do<br>
+        {<br>
+        printf("\n\nMENU\n\n");<br>
+        printf("\n1.CREATE\n");<br>
+        printf("\n2.DISPLAY\n");<br>
+        printf("\n3.INSERT FRONT\n");<br>
+        printf("\n4.DELETE FRONT \n");<br>
+        printf("\n5.INSERT END\n");<br>
+        printf("\n6.DELETE END\n");<br>
+        printf("\n7.EXIT\n");<br>
+        printf("\nENTER UR CHOICE\n");<br>
+        scanf("%d", &ch);<br>
+        switch (ch)<br>
+        {<br>
+        case 1:
+        printf("\n\nHOW MANY NODES U WANT TO CREATE\n");<br>
+        scanf("%d", &n);<br>
+        for (i = 0; i < n; i++)<br> { printf("\nENTER USN");<br> scanf("%d", &usn);<br> printf("\nENTER NAME");<br>
+            scanf("%s", name);<br>
+            printf("\nENTER branch");<br> scanf("%s", branch);<br> printf("\nENTER SEM");<br> scanf("%d", &sem);<br>
+            printf("\nENTER
+            Phone no");<br> scanf("%d", &phno);<br> create(usn, sem, phno, name, branch);<br> } break;<br> case 2:<br>
+            disp();<br> break;<br> case
+            3:<br> printf("\nENTER USN");<br> scanf("%d", &usn);<br> printf("\nENTER NAME");<br> scanf("%s", name);<br>
+            printf("\nENTER
+            branch");<br> scanf("%s", branch);<br> printf("\nENTER SEM");<br> scanf("%d", &sem);<br> printf("\nENTER
+            Phone no");<br>
+            scanf("%d", &phno);<br> insertfront(usn, sem, phno, name, branch);<br> break;<br> case 4: deletefront();<br>
+            break;<br> case 5:
+            printf("\nENTER USN");<br> scanf("%d", &usn);<br> printf("\nENTER NAME");<br> scanf("%s", name);<br>
+            printf("\nENTER
+            branch");<br> scanf("%s", branch);<br> printf("\nENTER SEM");<br> scanf("%d", &sem);<br> printf("\nENTER
+            Phone no");<br>
+            scanf("%d", &phno);<br> insertend(usn, sem, phno, name, branch);<br> break;<br> case 6: deleteend();<br>
+            break;<br> case 7:
+            exit(0);<br> } <br>}<br> while (ch !=7);<br> }<br> void create(int us, int se, int ph, char na[], char
+            br[])<br> { struct node *q,
+            *tmp;<br> tmp=(struct node *)malloc(sizeof(struct node));<br> tmp->usn = us;<br>
+            tmp->sem = se;<br>
+            tmp->phno = ph;<br>
+            strcpy(tmp->name, na);<br>
+            strcpy(tmp->branch, br);<br>
+            tmp->link = NULL;<br>
+            if (start == NULL)<br>
+            {<br>
+            start = tmp;<br>
+            }<br>
+            else<br>
+            {<br>
+            q = start;<br>
+            while (q->link != NULL)<br>
+            {<br>
+            q = q->link;<br>
+            }<br>
+            q->link = tmp;<br>
+            }<br>
+            }<br>
+            void disp()<br>
+            {<br>
+            struct node *q;<br>
+            int count = 0;<br>
+            if (start == NULL)<br>
+            {<br>
+            printf("\n\nLIST IS EMPTY");<br>
+            }<br>
+            else<br>
+            {<br>
+            q = start;<br>
+            while (q != NULL)<br>
+            {<br>
+            count++;<br>
+            printf("\nUSN %d", q->usn);<br>
+            printf("\nSEM %d", q->sem);<br>
+            printf("\nPH NO %d", q->phno);<br>
+            printf("\nNAME %s", q->name);<br>
+            printf("\nBRANCH %s", q->branch);<br>
+            q = q->link;<br>
+            }<br>
+            printf("NULL");<br>
+            printf("Total number of student=%d", count);<br>
+            }<br>
+            }<br>
+            void insertfront(int us, int se, int ph, char na[], char br[])<br>
+            {<br>
+            struct node *tmp;<br>
+            tmp = (struct node *)malloc(sizeof(struct node));<br>
+            tmp->usn = us;<br>
+            tmp->sem = se;<br>
+            tmp->phno = ph;<br>
+            strcpy(tmp->name, na);<br>
+            strcpy(tmp->branch, br);<br>
+            tmp->link = NULL;<br>
+            if (start == NULL)<br>
+            {<br>
+            start = tmp;<br>
+            }<br>
+            else<br>
+            {<br>
+            tmp->link = start;<br>
+            start = tmp;<br>
+            }<br>
+            }<br>
+            void insertend(int us, int se, int ph, char na[], char br[])<br>
+            {<br>
+            struct node *q, *tmp;<br>
+            tmp = (struct node *)malloc(sizeof(struct node));<br>
+            tmp->usn = us;<br>
+            tmp->sem = se;<br>
+            tmp->phno = ph;<br>
+            strcpy(tmp->name, na);<br>
+            strcpy(tmp->branch, br);<br>
+            tmp->link = NULL;<br>
+            if (start == NULL)<br>
+            {<br>
+            start = tmp;<br>
+            }<br>
+            else<br>
+            {<br>
+            q = start;<br>
+            while (q->link != NULL)<br>
+            {<br>
+            q = q->link;<br>
+            }<br>
+            q->link = tmp;<br>
+            }<br>
+            }<br>
+            void deletefront()<br>
+            {<br>
+            struct node *tmp;<br>
+            tmp = start;<br>
+            if (start->link == NULL)<br>
+            {<br>
+            free(start);<br>
+            start = NULL;<br>
+            }<br>
+            else<br>
+            {<br>
+            start = start->link;<br>
+            free(tmp);<br>
+            }<br>
+            printf("nThe Element deleted Successfully ");<br>
+            }<br>
+            void deleteend()<br>
+            {<br>
+            struct node *temp = start;<br>
+            struct node *t;<br>
+            if (start->link == NULL)<br>
+            {<br>
+            free(start);<br>
+            start = NULL;<br>
+            }<br>
+            else<br>
+            {<br>
+            while (temp->link != NULL)<br>
+            {<br>
+            t = temp;<br>
+            temp = temp->link;<br>
+            }<br>
+            free(t->link);<br>
+            t->link = NULL;<br>
+            }<br>
+            printf("nThe Element deleted Successfully ");<br>
+            }
+    </p>
+</body>
+
+</html>

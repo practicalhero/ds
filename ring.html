@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RING BUFFER</title>
+</head>
+
+<body>
+    <p>
+        #include &lt;stdio.h&gt;<br>
+        #include &lt;stdlib.h&gt;<br>
+        // #include<stdio_ext.h><br>
+            #define MAX 5<br>
+            int rb[MAX];<br>
+            int front = -1, rear = -1;<br>
+            void inset(int);<br>
+            void delete();<br>
+            void display();<br>
+            int main()<br>
+            {<br>
+            int ch;<br>
+            int item;<br>
+            while (1)<br>
+            {<br>
+            printf("\n\n~~Main Menu~~");<br>
+            printf("\n==> 1. Insertion and Overflow Demo");<br>
+            printf("\n==> 2. Deletion and Underflow Demo");<br>
+            printf("\n==> 3. Display");<br>
+            printf("\n==> 4. Exit");<br>
+            printf("\nEnter Your Choice: ");<br>
+            scanf("%d", &ch);<br>
+            //__fpurge(stdin);<br>
+            switch (ch)<br>
+            {<br>
+            case 1:<br>
+            printf("\n\nEnter the element to be inserted: ");<br>
+            scanf(" %d", &item);<br>
+            insert(item);<br>
+            break;<br>
+            case 2:<br>
+            delete ();<br>
+            break;<br>
+            case 3:<br>
+            display();<br>
+            break;<br>
+            case 4:<br>
+            exit(0);<br>
+            default:<br>
+            printf("\n\nPlease enter a valid choice");<br>
+            }<br>
+            }<br>
+            }<br>
+            void insert(int item)<br>
+            {<br>
+            if (front == (rear + 1) % MAX)<br>
+            {<br>
+            printf("\n\n~~Ring Buffer Overflow~~");<br>
+            }<br>
+            else<br>
+            {<br>
+            if (front == -1)<br>
+            front = rear = 0;<br>
+            else<br>
+            rear = (rear + 1) % MAX;<br>
+            rb[rear] = item;<br>
+            }<br>
+            }<br>
+            void delete()<br>
+            {<br>
+            int item;<br>
+            if (front == -1)<br>
+            {<br>
+            printf("\n\n~~Ring Buffer Underflow~~");<br>
+            }<br>
+            else<br>
+            {<br>
+            item = rb[front];<br>
+            if (front == rear) // only one element<br>
+            front = rear = -1;<br>
+            else<br>
+            front = (front + 1) % MAX;<br>
+            printf("\n\nDeleted element from the queue is: %d ", item);<br>
+            }<br>
+            }<br>
+            void display()<br>
+            {<br>
+            int i;<br>
+            if (front == -1)<br>
+            {<br>
+            printf("\n\nCircular Queue Empty");<br>
+            return;<br>
+            }<br>
+            else<br>
+            {<br>
+            printf("\nCircular Queue contents are:\n");<br>
+            printf("\nFront[%d]-> ", front);<br>
+            for (i = front; i != rear; i = (i + 1) % MAX)<br>
+            {<br>
+            printf(" %d", rb[i]);<br>
+            }<br>
+            printf(" %d", rb[i]);<br>
+            printf(" <-[%d]Rear", rear);<br> printf("\n");<br> }<br> }<br> </p>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFIX</title>
+</head>
+
+<body>
+    <p>
+        #include &lt;stdio.h&gt;<br>
+        #include &lt;string.h&gt;<br>
+        char infix[50], suffix[50], stack[25];<br>
+        int top = -1;<br>
+        void convert_fun();<br>
+        int precedence(char);<br>
+        void push(char);<br>
+        char pop();<br>
+        int main()<br>
+        {<br>
+        printf("\n\tenter infix exp");<br>
+        scanf("%s", infix);<br>
+        convert_fun();<br>
+        printf("the suffix exp is:%s", suffix);<br>
+        }<br>
+        void convert_fun()<br>
+        {<br>
+        int i = 0, j = 0;<br>
+        char c, temp;<br>
+        push('#');<br>
+        while (i < strlen(infix))<br>
+            {<br>
+            c = infix[i++];<br>
+            switch (c)<br>
+            {<br>
+            case '(':<br>
+            push(c);<br>
+            break;<br>
+            case ')':<br>
+            {<br>
+            temp = pop();<br>
+            while (temp != 'c')<br>
+            {<br>
+            suffix[j++] = temp;<br>
+            temp = pop();<br>
+            }<br>
+            break;<br>
+            }<br>
+            <br>
+            case '+':<br>
+            case '-':<br>
+            case '*':<br>
+            case '/':<br>
+            case '^':<br>
+            while (precedence(stack[top]) >= precedence(c))<br>
+            {<br>
+            temp = pop();<br>
+            suffix[j++] = temp;<br>
+            }<br>
+            push(c);<br>
+            break;<br>
+            <br>
+            default:<br>
+            {<br>
+            suffix[j++] = c;<br>
+            break;<br>
+            }<br>
+            }<br>
+            }<br>
+            while (top > 0)<br>
+            {<br>
+            temp = pop();<br>
+            suffix[j++] = temp;<br>
+            }<br>
+            }<br>
+            void push(char c)<br>
+            {<br>
+            stack[++top] = c;<br>
+            }<br>
+            <br>
+            char pop()<br>
+            {<br>
+            return (stack[top--]);<br>
+            }<br>
+            <br>
+            int precedence(char c)<br>
+            {<br>
+            switch (c)<br>
+            {<br>
+            case '^':<br>
+            return (3);<br>
+            case '/':<br>
+            return (2);<br>
+            case '+':<br>
+            return (1);<br>
+            case '-':<br>
+            return (1);<br>
+            case '(':<br>
+            return (0);<br>
+            case ')':<br>
+            return (0);<br>
+            case '#':<br>
+            return (-1);<br>
+            }<br>
+            return (0);<br>
+            }<br>
+    </p>
+</body>
+
+</html>

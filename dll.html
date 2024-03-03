@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOUBLE LINKED LIST</title>
+</head>
+
+<body>
+    <p>
+        #include &lt;stdio.h&gt;<br>
+        #include &lt;malloc.h&gt;<br>
+        #include &lt;stdlib.h&gt;<br>
+        struct employeeData<br>
+        {<br>
+        struct employeeData *prev;<br>
+        int SSN;<br>
+        char name[20];<br>
+        char dept[20];<br>
+        char designation[20];<br>
+        float sal;<br>
+        char PhNo[50];<br>
+        struct employeeData *next;<br>
+        };<br>
+        typedef struct employeeData employee;<br>
+        employee *first = NULL, *last = NULL;<br>
+        int n;<br>
+        void CreateList(int n)<br>
+        {<br>
+        employee *t;<br>
+        int i;<br>
+        first = (employee *)malloc(sizeof(employee));<br>
+        first->prev = NULL;<br>
+        printf("\nEnter employee id:");<br>
+        scanf("%d", &first->SSN);<br>
+        printf("\nEnter the employee name:");<br>
+        scanf("%s", first->name);<br>
+        printf("\nEnter the employee department:");<br>
+        scanf("%s", first->dept);<br>
+        printf("\nEnter the employee designation:");<br>
+        scanf("%s", first->designation);<br>
+        printf("\nEnter employee salary:");<br>
+        scanf("%f", &first->sal);<br>
+        printf("\nEnter employee phone number:");<br>
+        scanf("%s", first->PhNo);<br>
+        first->next = NULL;<br>
+        last = first;<br>
+        for (i = 1; i < n; i++) { t=(employee *)malloc(sizeof(employee)); t->prev = last;<br>
+            last->next = t;<br>
+            printf("\nEnter employee id:");<br>
+            scanf("%d", &t->SSN);<br>
+            printf("\nEnter the employee name:");<br>
+            scanf("%s", t->name);<br>
+            printf("\nEnter the employee department:");<br>
+            scanf("%s", t->dept);<br>
+            printf("\nEnter the employee designation:");<br>
+            scanf("%s", t->designation);<br>
+            printf("\nEnter employee salary:");<br>
+            scanf("%f", &t->sal);<br>
+            printf("\nEnter employee phone number:");<br>
+            scanf("%s", t->PhNo);<br>
+            t->next = NULL;<br>
+            last = t;<br>
+            }<br>
+            }<br>
+            void display()<br>
+            {<br>
+            if (first == NULL)<br>
+            printf("No Data is entered, list is empty \n");<br>
+            else<br>
+            {<br>
+            employee *t;<br>
+            t = first;<br>
+            while (t != NULL)<br>
+            {<br>
+            printf("\nEmployee id:%d", t->SSN);<br>
+            printf("\nEmployee name:%s", t->name);<br>
+            printf("\nEmployee department:%s", t->dept);<br>
+            printf("\nEmployee designation:%s", t->designation);<br>
+            printf("\nEmployee salary:%f", t->sal);<br>
+            printf("\nEmployee phone number:%s", t->PhNo);<br>
+            t = t->next;<br>
+            printf("\n\n");<br>
+            }<br>
+            }<br>
+            }<br>
+            void insertEnd()<br>
+            {<br>
+            employee *t = (employee *)malloc(sizeof(employee));<br>
+            printf("\nEnter employee id:");<br>
+            scanf("%d", &t->SSN);<br>
+            printf("\nEnter the employee name:");<br>
+            scanf("%s", t->name);<br>
+            printf("\nEnter the employee department:");<br>
+            scanf("%s", t->dept);<br>
+            printf("\nEnter the employee designation:");<br>
+            scanf("%s", t->designation);<br>
+            printf("\nEnter employee salary:");<br>
+            scanf("%f", &t->sal);<br>
+            printf("\nEnter employee phone number:");<br>
+            scanf("%s", t->PhNo);<br>
+            if (first == NULL)<br>
+            {<br>
+            t->prev = NULL;<br>
+            t->next = NULL;<br>
+            first = t;<br>
+            last = first;<br>
+            }<br>
+            else<br>
+            {<br>
+            t->next = NULL;<br>
+            t->prev = last;<br>
+            last->next = t;<br>
+            last = t;<br>
+            }<br>
+            }<br>
+            void insertFront()<br>
+            {<br>
+            employee *t = (employee *)malloc(sizeof(employee));<br>
+            printf("\nEnter employee id:");<br>
+            scanf("%d", &t->SSN);<br>
+            printf("\nEnter the employee name:");<br>
+            scanf("%s", t->name);<br>
+            printf("\nEnter the employee department:");<br>
+            scanf("%s", t->dept);<br>
+            printf("\nEnter the employee designation:");<br>
+            scanf("%s", t->designation);<br>
+            printf("\nEnter employee salary:");<br>
+            scanf("%f", &t->sal);<br>
+            printf("\nEnter employee phone number:");<br>
+            scanf("%s", t->PhNo);<br>
+            if (first == NULL)<br>
+            {<br>
+            t->prev = NULL;<br>
+            t->next = NULL;<br>
+            first = t;<br>
+            last = first;<br>
+            }<br>
+            else<br>
+            {<br>
+            t->next = first;<br>
+            t->prev = NULL;<br>
+            first->prev = t;<br>
+            first = t;<br>
+            }<br>
+            }<br>
+            void deleteEnd()<br>
+            {<br>
+            employee *t = last;<br>
+            employee *d;<br>
+            d = last;<br>
+            t = last->prev;<br>
+            t->next = NULL;<br>
+            last = t;<br>
+            free(d);<br>
+            }<br>
+            void deleteFront()<br>
+            {<br>
+            employee *t = first;<br>
+            employee *d;<br>
+            d = first;<br>
+            t = first->next;<br>
+            t->prev = NULL;<br>
+            first = t;<br>
+            free(d);<br>
+            }<br>
+            main()<br>
+            {<br>
+            int choice, key, info;<br>
+            while (1)<br>
+            {<br>
+            printf("\nDLIST OPERATIONS\n");<br>
+            printf("1.Create a list \n ");<br>
+            printf("2.INSERT at End of DLL \n ");<br>
+            printf("3.INSERT at Front of DLL\n ");<br>
+            printf("4.DELETE at End of DLL \n ");<br>
+            printf("5.DELETE at Front of DLL \n ");<br>
+            printf("6. DISPLAY\n ");<br>
+            printf("7.EXIT\n");<br>
+            printf("Enter your choice:\n");<br>
+            scanf("%d", &choice);<br>
+            switch (choice)<br>
+            {<br>
+            case 1:<br>
+            printf("\nEnter the number of elements to be included in list:");<br>
+            scanf("%d", &n);<br>
+            CreateList(n);<br>
+            break;<br>
+            case 2:<br>
+            insertEnd();<br>
+            break;<br>
+            case 3:<br>
+            insertFront();<br>
+            break;<br>
+            case 4:<br>
+            deleteEnd();<br>
+            break;<br>
+            case 5:<br>
+            deleteFront();<br>
+            break;<br>
+            case 6:<br>
+            display();<br>
+            break;<br>
+            case 7:<br>
+            exit(0);<br>
+            }<br>
+            }<br>
+            }<br>
+    </p>
+</body>
+
+</html>
