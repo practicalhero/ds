@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radix</title>
+</head>
+<body>
+    <p>
+        #include&lt;stdio.h&gt;<br>
+            int get_max (int a[], int n){<br>
+            int max = a[0];<br>
+            for (int i = 1; i&lt; n; i++)<br>
+            if (a[i] > max)<br>
+            max = a[i];<br>
+            return max;<br>
+            }<br>
+            void radix_sort (int a[], int n){<br>
+            int bucket[10][10], bucket_cnt[10];<br>
+            int i, j, k, r, NOP = 0, divisor = 1, lar, pass;<br>
+            lar = get_max (a, n);<br>
+            while (lar &gt;0){<br>
+            NOP++;<br>
+            lar /= 10;<br>
+            }<br>
+            for (pass = 0; pass &lt; NOP; pass++){<br>
+            for (i = 0; i&lt; 10; i++){<br>
+            bucket_cnt[i] = 0;<br>
+            }<br>
+            for (i = 0; i&lt; n; i++){<br>
+            r = (a[i] / divisor) % 10;<br>
+            bucket[r][bucket_cnt[r]] = a[i];<br>
+            bucket_cnt[r] += 1;<br>
+            }<br>
+            i = 0;<br>
+            for (k = 0; k &lt; 10; k++){<br>
+            for (j = 0; j &lt;bucket_cnt[k]; j++){  <br>
+            a[i] = bucket[k][j];<br>
+            i++;<br>
+            }<br>
+            }<br>
+            divisor *= 10;<br>
+            printf ("After pass %d : ", pass + 1);<br>
+            for (i = 0; i&lt; n; i++)<br>
+            printf ("%d ", a[i]);<br>
+            printf ("\n");<br>
+            }<br>
+            }<br>
+            int main (){<br>
+            int i, n, a[10];<br>
+            printf ("Enter the number of items to be sorted: ");<br>
+            scanf ("%d", &n);<br>
+            printf ("Enter items: ");<br>
+            for (i = 0; i&lt; n; i++){<br>
+            scanf ("%d", &a[i]);<br>
+            }<br>
+            radix_sort (a, n);<br>
+            printf ("Sorted items : ");<br>
+            for (i = 0; i&lt; n; i++)<br>
+            printf ("%d ", a[i]);<br>
+            printf ("\n");<br>
+            return 0;<br>
+            }<br>
+    </p>
+</body>
+</html>

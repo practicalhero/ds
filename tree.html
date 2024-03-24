@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree</title>
+</head>
+<body>
+    <p>
+        #include &lt;stdio.h&gt; <br>
+            #include&lt;stdlib.h&gt;<br>
+            struct BST { int data; struct BST *lchild; struct BST *rchild; };<br>
+            typedef struct BST * NODE;<br>
+            NODE create() { NODE temp;<br>
+            temp = (NODE) malloc(sizeof(struct BST));<br>
+            printf("\nEnter The value: ");<br>
+            scanf("%d", &temp->data);<br>
+            temp->lchild = NULL;<br>
+            temp->rchild = NULL;<br>
+            return temp;<br>
+             } <br>
+            void insert(NODE root, NODE newnode);<br>
+            void inorder(NODE root);<br>
+            void preorder(NODE root);<br>
+            void postorder(NODE root);<br>
+            void search(NODE root);<br>
+            void insert(NODE root, NODE newnode)<br>
+            {<br>
+            if (newnode->data < root->data)<br>
+            { <br>
+                if (root->lchild == NULL)<br>
+                 root->lchild = newnode;<br>
+                 else insert(root->lchild, newnode);<br>
+                 }<br>
+                if (newnode->data > root->data)<br>
+                { <br>
+                    if (root->rchild == NULL) root->rchild = newnode;<br>
+                    else insert(root->rchild, newnode);<br>
+                    }<br>
+                    }<br>
+            void search(NODE root)<br>
+            {<br>
+                 int key;<br>
+                 NODE cur;<br>
+                if(root == NULL)<br>
+                {<br>
+                    printf("\nBST is empty.");<br>
+                    return;<br>
+                    }<br>
+                    printf("\nEnter Element to be searched: ");<br>
+                    scanf("%d", &key);<br>
+                    cur = root;<br>
+                    while (cur != NULL)<br>
+                    {<br>
+                        if (cur->data == key) <br>
+                        { printf("\nKey element is present in BST");<br>
+                        return;<br>
+                        }<br>
+                        if (key < cur->data) <br>
+                        cur = cur->lchild; <br>
+                        else cur = cur->rchild; <br>
+                        } <br>
+                        printf("\nKey element is not found in the BST");<br>
+                        }<br>
+                        void inorder(NODE root)<br>
+                        {<br>
+                            if(root != NULL)<br>
+                            {<br>
+                                inorder(root->lchild);<br>
+                                printf("%d ", root->data);<br>
+                                inorder(root->rchild); <br>
+                                } <br>
+                        }<br>
+                        void preorder(NODE root) <br>
+                        { <br>
+                            if (root != NULL) <br>
+                        { printf("%d ", root->data); <br>
+                        preorder(root->lchild); <br>
+                        preorder(root->rchild); <br>
+                        } <br>
+                        } <br>
+                        void postorder(NODE root) <br>
+                        { if (root != NULL) <br>
+                        { postorder(root->lchild); <br>
+                        postorder(root->rchild); <br>
+                        printf("%d ", root->data); <br>
+                        } <br>
+                        }<br>
+                        void main()<br>
+                        { <br>
+                            int ch, key, val, i, n; <br>
+                        NODE root = NULL, newnode; <br>
+                        while(1) <br>
+                        { <br>
+                            printf("\n~~~~BST MENU~~~~"); <br>
+                        printf("\n1.Create a BST"); <br>
+                        printf("\n2.Search"); <br>
+                        printf("\n3.BST Traversals: "); <br>
+                        printf("\n4.Exit"); <br>
+                        printf("\nEnter your choice: "); <br>
+                        scanf("%d", &ch); <br>
+                        switch(ch) <br>
+                        { <br>
+                            case 1: printf("\nEnter the number of elements: "); <br>
+                            scanf("%d", &n); <br>
+                            for(i=1;i<=n;i++) <br>
+                            { <br>
+                                newnode = create(); <br>
+                            if (root == NULL) root = newnode; <br>
+                            else insert(root, newnode); <br>
+                            } <br>
+                            break;<br>
+                            case 2: search(root); <br>
+                            break; <br>
+                            case 3: if (root == NULL) printf("\nTree Is Not Created"); <br>
+                            else { printf("\nThe Preorder display : "); <br>
+                            preorder(root); <br>
+                            printf("\nTheInorder display : "); <br>
+                            inorder(root); <br>
+                            printf("\nThePostorder display : "); <br>
+                            postorder(root); <br>
+                            } <br>
+                            break;              <br>
+                            case 4: exit(0); <br>
+                            } <br>
+                            } <br>
+                            }<br>
+            
+            
+    </p>
+</body>
+</html>

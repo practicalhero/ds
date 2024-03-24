@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion sort`</title>
+</head>
+<body>
+    <p>
+        #include &lt;stdio.h&gt;<br>
+        #include &lt;conio.h&gt;<br>
+            void insertion(int [], int );<br>
+            int main()<br>
+            {<br>
+            int arr[30];<br>
+            int i,size;<br>
+            printf("\n\t------- Insertion sorting using function -------\n\n");<br>
+            printf("Enter total no. of elements : ");<br>
+            scanf("%d",&size);<br>
+            for(i=0; i&lt;size; i++)<br>
+            {<br>
+            printf("Enter %d element : ",i+1);<br>
+            scanf("%d",&arr[i]);<br>
+            }<br>
+            insertion(arr,size);<br>
+            printf("\n\t------- Insertion sorted elements using function -------\n\n");<br>
+            for(i=0; i&lt;size; i++)<br>
+            printf(" %d",arr[i]);<br>
+            getch();<br>
+            return 0;<br>
+            }<br>
+            void insertion(int arr[], int size)<br>
+            {<br>
+            int i,j,tmp;<br>
+            for(i=0; i&lt;size; i++)<br>
+            {<br>
+            for(j=i-1; j&gt;=0; j--)<br>
+            {<br>
+            if(arr[j]&gt;arr[j+1])<br>
+            {<br>
+            tmp=arr[j];<br>
+            arr[j]=arr[j+1];<br>
+            arr[j+1]=tmp;<br>
+            }<br>
+            else<br>
+            break;<br>
+            }<br>
+            }<br>
+            }<br>
+    </p>
+</body>
+</html>
